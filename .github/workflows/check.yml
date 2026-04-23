@@ -20,13 +20,12 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Dependencies
+     - name: Install Dependencies
         run: |
           pip install playwright requests
-          # Installiert den Browser
-          playwright install chromium
-          # Installiert die notwendigen Linux-System-Bibliotheken
-          sudo playwright install-deps chromium
+          # Wir nutzen "python -m playwright" statt nur "playwright"
+          python -m playwright install chromium
+          python -m playwright install-deps chromium
 
       - name: Run Scraper
         env:
