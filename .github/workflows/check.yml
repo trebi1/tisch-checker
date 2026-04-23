@@ -2,12 +2,14 @@ name: Wiesn Playwright Checker
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Alle 15 Minuten
-  workflow_dispatch: # Erlaubt manuelles Starten
+    - cron: '*/15 * * * *' # Läuft alle 15 Minuten
+  workflow_dispatch: # Erlaubt den manuellen Start über den "Run workflow" Button
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # Wichtig: Damit der Bot die Status-Datei im Repo speichern darf
     permissions:
       contents: write 
 
@@ -20,11 +22,12 @@ jobs:
         with:
           python-version: '3.10'
 
-     - name: Install Dependencies
+      - name: Install Dependencies
         run: |
           pip install playwright requests
-          # Wir nutzen "python -m playwright" statt nur "playwright"
+          # Installiert den Chromium Browser
           python -m playwright install chromium
+          # Installiert die notwendigen Linux-System-Bibliotheken (Schriften, Grafik-Support)
           python -m playwright install-deps chromium
 
       - name: Run Scraper
@@ -37,8 +40,14 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # Falls die Datei noch nicht existiert, leer anlegen
+          
+          # Sicherstellen, dass die Datei existiert, damit git add nicht fehlschlägt
           touch wiesn_status_3okt.txt
+          
           git add wiesn_status_3okt.txt
-          git commit -m "Update status" || echo "No changes"
-          git push || echo "Nothing to push"
+          
+          # Nur committen, wenn es wirklich Änderungen gibt
+          git commit -m "Update reservation status" || echo "Keine Änderungen zum Committen"
+          
+          # Änderungen hochladen
+          git push || echo "Nichts zum Pushen vorhanden"
