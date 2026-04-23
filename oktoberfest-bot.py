@@ -84,6 +84,7 @@ def check_wiesn():
     save_status(current_status)
 
 if __name__ == "__main__":
+    send_telegram("🤖 Test: Der Bot ist online und bereit!") # Diese Zeile einfügen
     try:
         check_wiesn()
     except Exception as global_e:
