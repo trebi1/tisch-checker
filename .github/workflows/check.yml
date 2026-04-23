@@ -34,7 +34,7 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python wiesn_checker.py
+        run: python oktoberfest-bot.py
 
       - name: Commit and Push
         run: |
