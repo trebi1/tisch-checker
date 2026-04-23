@@ -2,29 +2,31 @@ name: Wiesn Playwright Checker
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
+    - cron: '*/15 * * * *' # Alle 15 Minuten
+  workflow_dispatch: # Erlaubt manuelles Starten
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     permissions:
       contents: write 
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # <-- Update auf v4 (behebt die Warnung)
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v5 # <-- Update auf v5 (behebt die Warnung)
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
       - name: Install Dependencies
         run: |
           pip install playwright requests
-          playwright install --with-deps chromium
+          # Installiert den Browser
+          playwright install chromium
+          # Installiert die notwendigen Linux-System-Bibliotheken
+          sudo playwright install-deps chromium
 
       - name: Run Scraper
         env:
@@ -32,14 +34,12 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python wiesn_checker.py
 
-      - name: Commit changes
+      - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
-          # Stellt sicher, dass die Datei existiert, damit 'git add' nicht abstürzt
-          touch wiesn_status_3okt.txt 
+          # Falls die Datei noch nicht existiert, leer anlegen
+          touch wiesn_status_3okt.txt
           git add wiesn_status_3okt.txt
-          
-          git commit -m "Update reservation status" || echo "No changes to commit"
+          git commit -m "Update status" || echo "No changes"
           git push || echo "Nothing to push"
