@@ -14,7 +14,11 @@ ZELTE = [
     {"name": "Hofbräu", "url": "https://reservierung.hb-festzelt.de/reservierung"},
     {"name": "Bräurosl", "url": "https://reservierung.braeurosl.de/reservation"},
     {"name": "Ochsenbraterei", "url": "https://reservierung.ochsenbraterei.de/reservierungen"},
-    {"name": "Schottenhamel", "url": "https://reservierung.festhalle-schottenhamel.de/reservation/"}
+    {"name": "Schottenhamel", "url": "https://reservierung.festhalle-schottenhamel.de/reservation/"},
+    {"name": "Armbrustschützenzelt", "url": "https://reservierung.armbrustschuetzenzelt.de/reservierung"},
+    {"name": "Augustiner", "url": "https://www.festhalle-augustiner.com/reservierung/"},
+    {"name": "Schützenfestzelt", "url": "https://reservierung.schuetzenfestzelt.com/reservation/"},
+    {"name": "Paulaner", "url": "https://reservierung.paulanerfestzelt.de/reservierung"}
 ]
 
 def send_telegram(message):
