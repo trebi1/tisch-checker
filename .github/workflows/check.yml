@@ -34,7 +34,7 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python oktoberfest-bot.py
+        run: python tisch-checker.py
 
       - name: Commit and Push
         run: |
@@ -42,9 +42,9 @@ jobs:
           git config --local user.name "GitHub Action"
           
           # Sicherstellen, dass die Datei existiert, damit git add nicht fehlschlägt
-          touch wiesn_status_3okt.txt
+          touch tisch_status_3okt.txt
           
-          git add wiesn_status_3okt.txt
+          git add tisch_status_3okt.txt
           
           # Nur committen, wenn es wirklich Änderungen gibt
           git commit -m "Update reservation status" || echo "Keine Änderungen zum Committen"
