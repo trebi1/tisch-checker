@@ -1,4 +1,4 @@
-name: Wiesn Playwright Checker
+name: Tisch Checker
 
 on:
   #schedule:
