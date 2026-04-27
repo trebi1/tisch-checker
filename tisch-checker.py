@@ -6,7 +6,7 @@ import sys
 # --- KONFIGURATION ---
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-STATUS_FILE = "wiesn_status_3okt.txt"
+STATUS_FILE = "tisch_status_3okt.txt"
 TARGET_DATE = "03.10.2026"
 
 ZELTE = [
@@ -78,7 +78,7 @@ def check_wiesn():
         browser.close()
 
     if alerts:
-        send_telegram(f"🚨 *WIESN-TARGET GEFUNDEN!*\n\n" + "\n\n".join(alerts))
+        send_telegram(f"🚨 *TISCH GEFUNDEN!*\n\n" + "\n\n".join(alerts))
     
     # Speichere den Status immer (auch wenn leer), damit Git keine Probleme macht
     save_status(current_status)
