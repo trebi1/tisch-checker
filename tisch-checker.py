@@ -7,7 +7,7 @@ import sys
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 STATUS_FILE = "tisch_status_3okt.txt"
-TARGET_DATE = "03.10.2026"
+TARGET_DATE = "29.09.2026"
 
 ZELTE = [
     {"name": "Hacker-Pschorr", "url": "https://reservierung.derhimmelderbayern.de/reservierung"},
