@@ -1,8 +1,8 @@
 name: Wiesn Playwright Checker
 
 on:
-  schedule:
-    - cron: '*/13 * * * *' # Läuft alle 15 Minuten
+  #schedule:
+   # - cron: '*/13 * * * *' # Läuft alle 15 Minuten
   workflow_dispatch: # Erlaubt den manuellen Start über den "Run workflow" Button
 
 jobs:
